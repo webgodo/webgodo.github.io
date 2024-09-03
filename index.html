@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <title>Mohsen Ghaemmaghami - Senior Software Engineer</title>
     <meta
@@ -31,16 +31,13 @@
         </div>
         <div>or</div>
         <a href="./mohsen_ghaemmaghami-cv.pdf" download="mohsen_ghaemmaghami-cv">Download my CV</a>
-        <input type="checkbox" id="switch" />
       </div>
     </section>
 
     <script>
       // set to dark mode if the user's device schema is dark
-      const $switch = document.body.querySelector("#switch");
-      $switch.checked =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.add('dark-mode')
     </script>
   </body>
 </html>
