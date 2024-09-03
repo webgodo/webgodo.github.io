@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mohsen Ghaemmaghami - Senior Software Engineer</title>
+    <meta
+      name="description"
+      content="Explore the portfolio of Mohsen Ghaemmaghami, a software engineer sharing insights and articles on technology and innovation."
+    />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  </head>
+
+  <body>
+    <section class="wrapper">
+      <div class="hero"></div>
+      <div class="content">
+        <h1 class="h1--scalingSize" data-text="An awesome title">
+          Mohsen Ghaemmaghami
+        </h1>
+        <div>Welcome to my website. It's not ready yet ;)</div>
+        <div>
+          Send me your message through:
+          <a href="mailto:hi@mohsengh.com">hi@mohsengh.com</a>
+        </div>
+        <div>or</div>
+        <a href="/resume">Download my CV</a>
+        <input type="checkbox" id="switch" />
+      </div>
+    </section>
+
+    <script>
+      // set to dark mode if the user's device schema is dark
+      const $switch = document.body.querySelector("#switch");
+      $switch.checked =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+    </script>
+  </body>
+</html>
