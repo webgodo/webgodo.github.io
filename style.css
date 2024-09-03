@@ -148,25 +148,3 @@ body {
   font-size: calc(1rem - -5vw);
   position: relative;
 }
-
-/*challenge*/
-.h1--scalingSize::before {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  background: white;
-  text-shadow: 0 0 1px #ffffff;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-color: white;
-  -webkit-mask: linear-gradient(#000 0 0) luminance;
-  mask:
-    linear-gradient(#000 0 0) luminance,
-    alpha;
-  backdrop-filter: blur(19px) brightness(12.5);
-  -webkit-text-stroke: 1px white;
-  display: flex;
-  margin: auto;
-  z-index: 1;
-  pointer-events: none;
-}
