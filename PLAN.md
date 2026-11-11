@@ -275,7 +275,7 @@ Status 12 Nov 2026: phases 1–5 are implemented in this repo (see README.md). L
 
 ### Going live (two one-time steps outside the repo)
 1. **GitHub Pages source → GitHub Actions.** The repo currently deploys the `main` branch root (legacy mode). The new site is built by `.github/workflows/deploy.yml`, so in repo Settings → Pages set Source to "GitHub Actions" *before* pushing, or the raw source would be served for a minute.
-2. **Deploy `sveltia/sveltia-cms-auth` to Cloudflare Workers**, create the GitHub OAuth App, and put the Worker URL in `public/admin/config.yml` as `base_url`.
+2. **Done 12 Nov 2026:** `sveltia-cms-auth` is deployed at https://sveltia-cms-auth.webgodo.workers.dev (Cloudflare account webgodo@gmail.com) with `ALLOWED_DOMAINS=mohsengh.com`, and `base_url` is set in `public/admin/config.yml`. The Worker reads `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` from the GitHub App "Sveltia CMS Auth for mohsengh.com" (callback `<worker>/callback`), installed on this repo only.
 
 | Phase | Deliverable | Est. |
 |-------|-------------|------|

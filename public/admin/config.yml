@@ -4,7 +4,7 @@ backend:
   name: github
   repo: webgodo/webgodo.github.io
   branch: main
-  base_url: https://sveltia-cms-auth.REPLACE-ME.workers.dev   # ← set after deploying sveltia/sveltia-cms-auth
+  base_url: https://sveltia-cms-auth.webgodo.workers.dev
   automatic_deployments: true
   commit_messages:
     create: "content: add {{collection}} “{{slug}}”"
