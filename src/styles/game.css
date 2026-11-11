@@ -39,3 +39,16 @@
   .hero { gap: 6px; }
   .hero__name { font-size: 11px; }
 }
+/* ===== Scope Creep (Pac-Man easter egg) ===== */
+.egg { position: fixed; z-index: 60; padding: 8px; }
+.egg__box { position: relative; width: min(96vw, 520px); max-height: 96dvh; max-width: none; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
+.egg__head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.egg__head h2 { font-size: clamp(10px, 2.4vw, 14px); }
+/* the maze is 19x22 tiles: never taller than the box is wide allows, never more than 72dvh */
+.egg__stage { height: min(72dvh, calc(min(96vw, 520px) * 1.16 - 30px)); display: grid; place-items: center; }
+.egg__canvas { display: block; background: #05050f; border: 2px solid var(--line); touch-action: none; image-rendering: auto; }
+.egg__legend { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 10px 14px; flex-wrap: wrap; font-family: var(--f-head); font-size: 7px; line-height: 1.6; }
+.egg__legend li { display: inline-flex; align-items: center; gap: 5px; text-shadow: 0 0 6px currentColor; }
+.egg__legend i { width: 8px; height: 8px; border-radius: 4px 4px 0 0; display: inline-block; }
+.egg__hint { margin: 0; font-family: var(--f-head); font-size: 6px; color: var(--muted); line-height: 1.6; }
+@media (max-width: 480px) { .egg__hint { display: none; } }

@@ -25,7 +25,7 @@ pnpm build      # dist/ (+ rss.xml, sitemap.xml)
 
 Fork it, replace `content/profile.json` and the favicons in `public/`, update `CNAME` (or delete it), and push. The bricks, the timeline, the skills sheet and the CV page all read from that one JSON file.
 
-Easter egg: ↑ ↑ ↓ ↓ ← → ← → B A.
+Easter egg: ↑ ↑ ↓ ↓ ← → ← → B A opens **Scope Creep**, a Pac-Man mini-game where the ghosts are BUG, DEADLINE, SCOPE CREEP and LEGACY and the power pellet is a ☕. On a touch screen, tap the marquee logo 10 times quickly instead.
 
 ## Licence
 
