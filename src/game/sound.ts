@@ -33,4 +33,9 @@ export const sfx = {
   gameover: () => { [392, 349, 311, 262].forEach((f, i) => setTimeout(() => tone(f, 0.25, 'square', 0.05), i * 220)); },
   win: () => { [523, 659, 784, 1046, 1318].forEach((f, i) => setTimeout(() => tone(f, 0.18, 'square', 0.06), i * 110)); },
   coin: () => { tone(988, 0.08); setTimeout(() => tone(1319, 0.3), 80); },
+  // Scope Creep (Pac-Man easter egg)
+  waka: () => { tone(330, 0.05, 'square', 0.04, 120); setTimeout(() => tone(450, 0.05, 'square', 0.04, -120), 55); },
+  power: () => { [220, 330, 440].forEach((f, i) => setTimeout(() => tone(f, 0.1, 'triangle', 0.05), i * 60)); },
+  eatGhost: () => { [392, 523, 659, 784, 1046].forEach((f, i) => setTimeout(() => tone(f, 0.06, 'square', 0.05), i * 40)); },
+  death: () => { [660, 520, 400, 300, 220, 160].forEach((f, i) => setTimeout(() => tone(f, 0.16, 'sawtooth', 0.04, -40), i * 120)); },
 };

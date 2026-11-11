@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Breaker, type Summary } from '../game/breaker';
 import { sfx } from '../game/sound';
@@ -10,6 +10,7 @@ import { share } from '../lib/share';
 
 type End = { kind: 'over' | 'win'; s: Summary } | null;
 const HI_KEY = 'breaker:hi';
+const ScopeCreep = lazy(() => import('../components/ScopeCreep'));
 
 export default function Home() {
   useTitle('');
@@ -23,6 +24,8 @@ export default function Home() {
   const [playing, setPlaying] = useState(false);
   const [end, setEnd] = useState<End>(null);
   const [shared, setShared] = useState('');
+  const [egg, setEgg] = useState(false);
+  const eggRef = useRef(false);
 
   const jobs = profile.timeline;
   const levels = jobs.map((j, i) => ({ id: j.id, label: `${j.from.slice(0, 4)} ${j.company.toUpperCase()}`, color: levelColor(i) }));
@@ -41,7 +44,7 @@ export default function Home() {
     gameRef.current = g;
     const quiet = small || prefersReducedMotion();
     if (quiet) g.drawOnce(); else g.start(); // attract mode runs on desktop only
-    const vis = () => (document.hidden ? g.stop() : (playingRef.current || !quiet) && g.start());
+    const vis = () => (document.hidden ? g.stop() : !eggRef.current && (playingRef.current || !quiet) && g.start());
     document.addEventListener('visibilitychange', vis);
     return () => { document.removeEventListener('visibilitychange', vis); g.destroy(); gameRef.current = null; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,7 +57,15 @@ export default function Home() {
     if (end && end.s.score > hi) { setHi(end.s.score); try { localStorage.setItem(HI_KEY, String(end.s.score)); } catch { /* ignore */ } }
   }, [end, hi]);
 
-  useKonami(useCallback(() => { gameRef.current?.takeover(); gameRef.current?.revealAll(); setRevealed(jobs.map((_, i) => i)); }, [jobs]));
+  // Easter egg: Konami code (or 10 quick taps on the marquee logo) opens Scope Creep over a paused breaker.
+  const openEgg = useCallback(() => { if (eggRef.current) return; eggRef.current = true; gameRef.current?.stop(); setEgg(true); }, []);
+  const closeEgg = useCallback(() => {
+    eggRef.current = false; setEgg(false);
+    if (playingRef.current || !(small || prefersReducedMotion())) gameRef.current?.start();
+    canvasRef.current?.focus();
+  }, [small]);
+  useKonami(openEgg);
+  useEffect(() => { window.addEventListener('scope-creep', openEgg); return () => window.removeEventListener('scope-creep', openEgg); }, [openEgg]);
 
   const restart = () => { setEnd(null); setRevealed([]); setShared(''); gameRef.current?.reset(false); gameRef.current?.start(); canvasRef.current?.focus(); };
   const doShare = async () => { if (!end) return; const r = await share(end.s, end.kind === 'win'); setShared(r === 'downloaded' ? 'CARD SAVED · TEXT COPIED' : 'SHARED!'); };
@@ -129,8 +140,10 @@ export default function Home() {
         )}
       </aside>
 
+      {egg && <Suspense fallback={null}><ScopeCreep onClose={closeEgg} /></Suspense>}
+
       {small && (
-        <Toast id="bigger-screen">★ BIGGER SCREEN = BONUS LEVEL ★<br />The full arcade (attract mode, CRT, easter eggs) runs on desktop.</Toast>
+        <Toast id="bigger-screen">★ BIGGER SCREEN = BONUS LEVEL ★<br />The full arcade (attract mode, CRT) runs on desktop.</Toast>
       )}
     </div>
   );
