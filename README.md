@@ -21,6 +21,11 @@ pnpm test
 pnpm build      # dist/ (+ rss.xml, sitemap.xml)
 ```
 
+## Assets
+
+- `pnpm vite preview --port 4173`, then `node scripts/export-cv.mjs` regenerates `public/mohsen_ghaemmaghami-cv.pdf` from the `/cv` page.
+- With the same preview running, `node scripts/record-launch.mjs <frames-dir>` records the homepage; `design/launch/` holds the resulting GIF and MP4 for launch posts.
+
 ## Make it yours
 
 Fork it, replace `content/profile.json` and the favicons in `public/`, update `CNAME` (or delete it), and push. The bricks, the timeline, the skills sheet and the CV page all read from that one JSON file.
