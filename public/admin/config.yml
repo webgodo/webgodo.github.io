@@ -1,0 +1,107 @@
+# Sveltia CMS — https://sveltiacms.app/en/docs
+# Login: "Sign in with GitHub" through the Cloudflare Worker at base_url (see PLAN.md §6).
+backend:
+  name: github
+  repo: webgodo/webgodo.github.io
+  branch: main
+  base_url: https://sveltia-cms-auth.REPLACE-ME.workers.dev   # ← set after deploying sveltia/sveltia-cms-auth
+  automatic_deployments: true
+  commit_messages:
+    create: "content: add {{collection}} “{{slug}}”"
+    update: "content: update {{collection}} “{{slug}}”"
+    delete: "content: delete {{collection}} “{{slug}}”"
+    uploadMedia: "content: upload {{path}}"
+    deleteMedia: "content: delete {{path}}"
+
+site_url: https://mohsengh.com
+display_url: https://mohsengh.com
+logo_url: /android-chrome-192x192.png
+
+media_folder: public/images/articles
+public_folder: /images/articles
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: content/articles
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: articles/{{slug}}
+    sortable_fields: [date, title]
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: YYYY-MM-DD, time_format: false }
+      - { name: summary, label: Summary, widget: text, hint: "One or two sentences for the list, RSS and social cards." }
+      - { name: tags, label: Tags, widget: list, default: [frontend] }
+      - { name: draft, label: Draft, widget: boolean, default: false, hint: "Drafts are committed but not published." }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: profile
+    label: Profile
+    files:
+      - name: profile
+        label: Profile (timeline, skills, projects)
+        file: content/profile.json
+        format: json
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: shortName, label: Short name, widget: string }
+          - { name: title, label: Title, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: pitch, label: Pitch, widget: text }
+          - { name: location, label: Location, widget: string }
+          - { name: openTo, label: Open to, widget: string }
+          - { name: email, label: Email, widget: string }
+          - name: links
+            label: Links
+            widget: object
+            fields:
+              - { name: github, label: GitHub, widget: string }
+              - { name: linkedin, label: LinkedIn, widget: string }
+              - { name: cv, label: CV (path or URL), widget: string }
+          - name: timeline
+            label: Timeline (one row of bricks each, newest first)
+            widget: list
+            summary: "{{fields.company}} — {{fields.role}}"
+            fields:
+              - { name: id, label: ID (slug), widget: string }
+              - { name: from, label: From (YYYY-MM), widget: string }
+              - { name: to, label: To (YYYY-MM, empty = present), widget: string, required: false }
+              - { name: role, label: Role, widget: string }
+              - { name: company, label: Company, widget: string }
+              - { name: type, label: Type / location, widget: string }
+              - { name: tech, label: Tech, widget: list }
+              - { name: highlights, label: Highlights, widget: list }
+          - name: education
+            label: Education
+            widget: list
+            fields:
+              - { name: degree, label: Degree, widget: string }
+              - { name: school, label: School, widget: string }
+              - { name: years, label: Years, widget: string }
+          - name: projects
+            label: Projects
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: years, label: Years, widget: string }
+              - { name: blurb, label: Blurb, widget: text }
+              - { name: tech, label: Tech, widget: list }
+          - name: skills
+            label: Skills
+            widget: list
+            summary: "{{fields.group}} (Lv.{{fields.level}})"
+            fields:
+              - { name: group, label: Group, widget: string }
+              - { name: level, label: Level (0–99), widget: number, value_type: int, min: 0, max: 99 }
+              - { name: lines, label: Fun lines, widget: list }
+              - { name: serious, label: Serious one-liner, widget: string }

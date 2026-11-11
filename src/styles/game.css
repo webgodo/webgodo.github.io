@@ -1,0 +1,39 @@
+.game { display: grid; grid-template-columns: minmax(0, 1fr) 320px; grid-template-areas: 'stage hero' 'stage side'; gap: 16px; align-items: start; }
+.game__stage { grid-area: stage; } .hero { grid-area: hero; } .game__side { grid-area: side; }
+.game__stage { position: relative; }
+.game__canvas { width: 100%; height: auto; display: block; background: #05050f; border: 2px solid var(--line); touch-action: none; }
+.game__hud { display: flex; justify-content: space-between; gap: 8px; font-family: var(--f-head); font-size: 9px; padding: 6px 2px 8px; flex-wrap: wrap; }
+.game__hud .lv { color: var(--cyan); } .game__hud .sc { color: var(--yellow); } .game__hud .hi { color: var(--pink); }
+.game__overlay {
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
+  background: rgba(5,5,15,.78); z-index: 3;
+}
+.game__overlay .box { max-width: 460px; width: 100%; }
+.game__side { display: flex; flex-direction: column; gap: 12px; }
+.hero { display: flex; flex-direction: column; gap: 10px; }
+.hero__name { font-family: var(--f-head); font-size: clamp(11px, 1.6vw, 14px); color: var(--fg); line-height: 1.6; margin: 0; text-shadow: 0 0 8px var(--cyan); }
+.hero__title { color: var(--cyan); font-size: 22px; margin: 0; }
+.hero__tag { color: var(--muted); margin: 0; font-size: 19px; }
+.hero__open { font-family: var(--f-head); font-size: 7px; color: var(--green); line-height: 1.8; margin: 0; }
+.hero .row { gap: 8px; }
+.reveal { animation: pop .25s steps(4); }
+@keyframes pop { from { transform: scale(.9); opacity: 0; } }
+.reveal__years { font-family: var(--f-head); font-size: 8px; color: var(--yellow); }
+.reveal__role { font-family: var(--f-head); font-size: 9px; color: var(--pink); margin: 8px 0 2px; line-height: 1.6; }
+.reveal__co { font-size: 24px; color: var(--fg); }
+.reveal ul { margin: 8px 0 0; padding-left: 1em; font-size: 19px; color: #d0d0e8; }
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.levels i { height: 8px; border: 1px solid var(--line); background: var(--bg); display: block; }
+.levels i.on { background: var(--c); box-shadow: 0 0 6px var(--c); }
+.toast {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50; width: min(92vw, 420px);
+  font-family: var(--f-head); font-size: 8px; line-height: 1.8;
+}
+.toast .box { padding: 12px 14px; }
+.toast .row { gap: 8px; margin-top: 8px; }
+@media (max-width: 860px) {
+  .game { grid-template-columns: 1fr; grid-template-areas: 'hero' 'stage' 'side'; }
+  .game__hud { font-size: 7px; gap: 6px; }
+  .hero { gap: 6px; }
+  .hero__name { font-size: 11px; }
+}

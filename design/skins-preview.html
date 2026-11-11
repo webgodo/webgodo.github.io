@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skin previews</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root { --f-head: 'Press Start 2P', monospace; --f-body: 'VT323', monospace; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #14151a; color: #e8e8e8; font-family: var(--f-body); font-size: 20px; padding: 24px; }
+  h1 { font-family: var(--f-head); font-size: 16px; margin: 0 0 8px; }
+  h2 { font-family: var(--f-head); font-size: 13px; margin: 48px 0 6px; }
+  p.note { margin: 0 0 16px; color: #aaa; max-width: 900px; }
+  .row { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  canvas { image-rendering: pixelated; display: block; }
+
+  /* ---------- shared screen content ---------- */
+  .hud { font-family: var(--f-head); font-size: 8px; display: flex; justify-content: space-between; padding: 6px 8px; }
+  .screen { position: relative; overflow: hidden; }
+  .title { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 10px; }
+  .title .name { font-family: var(--f-head); font-size: 10px; line-height: 1.6; }
+  .title .sub { font-size: 16px; line-height: 1.1; }
+  .btns { display: flex; gap: 8px; margin-top: 6px; }
+  .btn { font-family: var(--f-head); font-size: 7px; padding: 6px 8px; border: 2px solid currentColor; box-shadow: 3px 3px 0 currentColor; }
+  .blink { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .scan::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.25) 0 1px, transparent 1px 3px); }
+
+  /* ---------- 1. NES ---------- */
+  .nes { --bg:#000; --fg:#fcfcfc; --accent:#e45c10; --accent2:#3cbcfc; --accent3:#b8f818; --frame:#d8d8d8; --frame2:#8b8b8b; }
+  .nes .tv { background: var(--frame); border: 6px solid var(--frame2); border-radius: 18px; padding: 18px 70px 18px 18px; position: relative; width: 560px; }
+  .nes .tv::after { content: "NES"; position: absolute; right: 18px; top: 24px; font-family: var(--f-head); font-size: 9px; color: #444; writing-mode: vertical-rl; }
+  .nes .tv .knob { position: absolute; right: 22px; width: 24px; height: 24px; border-radius: 50%; background: #555; border: 3px solid #333; }
+  .nes .screen { background: var(--bg); color: var(--fg); width: 448px; height: 336px; border: 8px solid #222; border-radius: 10px; }
+  .nes .btn { color: var(--accent3); }
+
+  /* ---------- 2. GAME BOY ---------- */
+  .gb { --bg:#9bbc0f; --d1:#8bac0f; --d2:#306230; --d3:#0f380f; --shell:#c9c7c4; --shell2:#a8a5a1; }
+  .gb .body { background: var(--shell); border: 4px solid var(--shell2); border-radius: 12px 12px 48px 12px; padding: 22px 26px 36px; width: 300px; }
+  .gb .bezel { background: #5b5e66; border-radius: 8px 8px 28px 8px; padding: 26px 24px 18px; }
+  .gb .bezel .brand { font-family: var(--f-head); font-size: 6px; color: #ccd; text-align: center; margin-top: 8px; letter-spacing: 1px; }
+  .gb .screen { background: var(--bg); color: var(--d3); width: 200px; height: 180px; }
+  .gb .logo { font-family: var(--f-head); font-size: 8px; color: #2a2d74; margin: 18px 0 0; }
+  .gb .logo span { font-size: 6px; color: #556; }
+  .gb .pads { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .gb .dpad { width: 64px; height: 64px; position: relative; }
+  .gb .dpad::before, .gb .dpad::after { content:""; position:absolute; background:#2a2a2a; border-radius: 4px; }
+  .gb .dpad::before { left: 22px; top: 0; width: 20px; height: 64px; }
+  .gb .dpad::after { top: 22px; left: 0; height: 20px; width: 64px; }
+  .gb .ab { display: flex; gap: 10px; transform: rotate(-20deg); }
+  .gb .ab i { width: 28px; height: 28px; border-radius: 50%; background: #8f1b3c; display: block; }
+  .gb .btn { color: var(--d3); box-shadow: 2px 2px 0 var(--d2); font-size: 6px; }
+  .gb .hud { font-size: 6px; }
+  .gb .title .name { font-size: 7px; }
+  .gb .title .sub { font-size: 12px; }
+
+  /* ---------- 3. ARCADE ---------- */
+  .arc { --bg:#0b0b1a; --fg:#fff; --neon:#ff2d95; --neon2:#00e5ff; --neon3:#ffe600; --cab:#1b1b2b; }
+  .arc .cab { background: linear-gradient(#2a2a44, #1b1b2b); border: 4px solid #3b3b5c; border-radius: 12px; padding: 16px 26px 26px; width: 560px; position: relative; }
+  .arc .marquee { font-family: var(--f-head); font-size: 14px; text-align: center; color: var(--neon3); text-shadow: 0 0 6px var(--neon3), 0 0 18px var(--neon); background: #0a0a14; border: 3px solid var(--neon); padding: 12px; margin-bottom: 14px; }
+  .arc .screen { background: var(--bg); color: var(--fg); width: 500px; height: 330px; border: 6px solid #000; box-shadow: 0 0 0 4px #3b3b5c, inset 0 0 60px rgba(0,229,255,.12); border-radius: 14px; }
+  .arc .panel { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 10px 16px; background: #101020; border: 3px solid #3b3b5c; border-radius: 8px; }
+  .arc .stick { width: 26px; height: 26px; border-radius: 50%; background: #e22; border: 3px solid #a00; margin: 0 0 0 8px; }
+  .arc .btns2 { display: flex; gap: 10px; }
+  .arc .btns2 i { width: 22px; height: 22px; border-radius: 50%; display: block; border: 3px solid #0006; }
+  .arc .coin { font-family: var(--f-head); font-size: 7px; color: var(--neon2); }
+  .arc .btn { color: var(--neon2); text-shadow: 0 0 4px var(--neon2); }
+
+  /* phone frames */
+  .phone { width: 190px; border: 6px solid #333; border-radius: 26px; background: #000; padding: 10px 6px; }
+  .phone .screen { width: 166px; height: 300px; border: none; border-radius: 0; box-shadow: none; }
+  .phone .hud { font-size: 6px; }
+  .phone .title .name { font-size: 7px; }
+  .phone .title .sub { font-size: 12px; }
+  .phone .btn { font-size: 5px; padding: 4px 5px; }
+  .phone .pad { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding: 0 6px; }
+  .phone .pad .dpad { width: 40px; height: 40px; transform: scale(.65); transform-origin: left center; }
+  .phone .pad .ab { gap: 6px; } .phone .pad .ab i { width: 20px; height: 20px; }
+  .gb.phone { --shell:#000; }
+  .cap { font-size: 16px; color: #999; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>mohsengh.com — console skin options</h1>
+<p class="note">Same homepage (Career Breaker + name/title/CV above the fold) in three skins. Desktop shell on the left, phone on the right. The bricks are the career grid: bottom row 2012, top row 2025; the orange bricks are the ones already broken and revealed. Fonts: Press Start 2P (HUD) and VT323 (body).</p>
+
+<!-- ===== NES ===== -->
+<h2>Option A — NES (54-colour palette, CRT TV frame)</h2>
+<p class="note">Brightest and most "arcade-y" of the three; reads well in a social-card thumbnail. Dark mode by default, light mode = cream CRT plastic.</p>
+<div class="row nes">
+  <div class="tv">
+    <div class="knob" style="top:70px"></div><div class="knob" style="top:110px"></div>
+    <div class="screen scan">
+      <div class="hud"><span>LV.08 OXOLO</span><span>SCORE 004210</span><span>☕☕☕</span></div>
+      <canvas class="game" width="448" height="200" data-skin="nes"></canvas>
+      <div class="title">
+        <div class="name">MOHSEN GHAEMMAGHAMI</div>
+        <div class="sub">Senior Software Engineer · 12+ yrs · React · TypeScript · Node</div>
+        <div class="btns"><span class="btn blink">▶ PRESS START</span><span class="btn">⬇ DOWNLOAD CV</span><span class="btn">SKIP GAME →</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="phone">
+      <div class="screen scan" style="background:#000;color:#fcfcfc">
+        <div class="hud"><span>LV.08</span><span>004210</span><span>☕☕☕</span></div>
+        <canvas class="game" width="166" height="190" data-skin="nes" data-cols="6"></canvas>
+        <div class="title">
+          <div class="name">MOHSEN<br>GHAEMMAGHAMI</div>
+          <div class="sub">Senior Software Eng.<br>12+ yrs · React · TS · Node</div>
+          <div class="btns"><span class="btn blink">▶ START</span><span class="btn">⬇ CV</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cap">Phone: drag anywhere to move the paddle</div>
+  </div>
+</div>
+
+<!-- ===== GAME BOY ===== -->
+<h2>Option B — Game Boy (4 shades of green, DMG shell)</h2>
+<p class="note">Most nostalgic and most distinctive; the 4-colour limit forces very clean pixel art. On a phone the shell becomes the phone itself. Dark mode = Game Boy Pocket (grey/black LCD).</p>
+<div class="row gb">
+  <div class="body">
+    <div class="bezel">
+      <div class="screen">
+        <div class="hud"><span>LV.08 OXOLO</span><span>4210</span><span>♥♥♥</span></div>
+        <canvas class="game" width="200" height="96" data-skin="gb" data-cols="8"></canvas>
+        <div class="title">
+          <div class="name">MOHSEN GH.</div>
+          <div class="sub">Senior Software Eng.<br>React · TS · Node</div>
+          <div class="btns"><span class="btn blink">▶ START</span><span class="btn">CV</span></div>
+        </div>
+      </div>
+      <div class="brand">DOT MATRIX WITH STEREO SOUND</div>
+    </div>
+    <div class="logo">mohsengh.com <span>PORTFOLIO™</span></div>
+    <div class="pads"><div class="dpad"></div><div class="ab"><i></i><i></i></div></div>
+  </div>
+  <div>
+    <div class="phone gb">
+      <div class="screen" style="width:166px;height:230px">
+        <div class="hud"><span>LV.08</span><span>4210</span><span>♥♥♥</span></div>
+        <canvas class="game" width="166" height="130" data-skin="gb" data-cols="6"></canvas>
+        <div class="title">
+          <div class="name">MOHSEN GH.</div>
+          <div class="sub">Senior Software Eng.</div>
+          <div class="btns"><span class="btn blink">▶ START</span><span class="btn">CV</span></div>
+        </div>
+      </div>
+      <div class="pad"><div class="dpad"></div><div class="ab"><i></i><i></i></div></div>
+    </div>
+    <div class="cap">Phone: the page becomes the Game Boy; A/B are real buttons</div>
+  </div>
+</div>
+
+<!-- ===== ARCADE ===== -->
+<h2>Option C — Arcade cabinet (neon marquee, dark CRT, attract mode)</h2>
+<p class="note">Most "wow" on a desktop and the best fit for an idle attract-mode demo and a high-score table. Heaviest visually; on phones it drops the cabinet and keeps the neon HUD.</p>
+<div class="row arc">
+  <div class="cab">
+    <div class="marquee">★ CAREER BREAKER ★</div>
+    <div class="screen scan">
+      <div class="hud"><span style="color:var(--neon2)">1UP 004210</span><span style="color:var(--neon3)" class="blink">INSERT COIN</span><span style="color:var(--neon)">HI 012345</span></div>
+      <canvas class="game" width="500" height="200" data-skin="arc"></canvas>
+      <div class="title">
+        <div class="name">MOHSEN GHAEMMAGHAMI</div>
+        <div class="sub">Senior Software Engineer · 12+ yrs · React · TypeScript · Node</div>
+        <div class="btns"><span class="btn blink">▶ PRESS START</span><span class="btn">⬇ DOWNLOAD CV</span><span class="btn">SKIP GAME →</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div style="display:flex;align-items:center;gap:8px"><span class="coin">P1</span><div class="stick"></div></div>
+      <div class="btns2"><i style="background:#ff2d95"></i><i style="background:#00e5ff"></i><i style="background:#ffe600"></i></div>
+      <span class="coin">CREDITS 01</span>
+    </div>
+  </div>
+  <div>
+    <div class="phone arc">
+      <div class="screen scan">
+        <div class="hud"><span style="color:var(--neon2)">1UP 4210</span><span style="color:var(--neon)">HI 12345</span></div>
+        <canvas class="game" width="166" height="190" data-skin="arc" data-cols="6"></canvas>
+        <div class="title">
+          <div class="name">MOHSEN<br>GHAEMMAGHAMI</div>
+          <div class="sub">Senior Software Eng.<br>12+ yrs · React · TS · Node</div>
+          <div class="btns"><span class="btn blink">▶ START</span><span class="btn">⬇ CV</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cap">Phone: neon HUD only, no cabinet</div>
+  </div>
+</div>
+
+<script>
+document.fonts.load('10px "Press Start 2P"').then(draw);
+function draw() {
+const PAL = {
+  nes: { rows: ['#e45c10','#f8b800','#b8f818','#3cbcfc','#6888fc','#f878f8','#f8f8f8','#a4e4fc','#d8f878'], broken:'#e45c10', paddle:'#fcfcfc', ball:'#fcfcfc', text:'#fcfcfc' },
+  gb:  { rows: ['#0f380f','#306230','#0f380f','#306230','#0f380f','#306230','#0f380f','#306230','#0f380f'], broken:'#8bac0f', paddle:'#0f380f', ball:'#0f380f', text:'#0f380f' },
+  arc: { rows: ['#ff2d95','#ffe600','#00e5ff','#7cff4a','#ff8a00','#b14bff','#ff2d95','#ffe600','#00e5ff'], broken:'#ff8a00', paddle:'#00e5ff', ball:'#ffe600', text:'#fff' },
+};
+const JOBS = ['LAMBDA CURRY','BETTERMODE','OXOLO','WEB3 BRIDGE','MOOTANROO','MAGIC MIRROR','AMOOZESH.IT','FARAKAV','JAMDIGITAL'];
+for (const c of document.querySelectorAll('canvas.game')) {
+  const ctx = c.getContext('2d'), p = PAL[c.dataset.skin], cols = +(c.dataset.cols || 10);
+  const rows = c.height < 120 ? 5 : 9, gap = 2, bw = (c.width - gap*(cols+1)) / cols, bh = c.height < 120 ? 7 : 10;
+  const brokenRow = rows - 3; // row revealed
+  for (let r = 0; r < rows; r++) for (let i = 0; i < cols; i++) {
+    const x = gap + i*(bw+gap), y = 4 + r*(bh+gap);
+    if (r === brokenRow) { // revealed row: show label once
+      if (i === 0) { ctx.fillStyle = p.broken; ctx.fillRect(x, y, c.width - 2*gap, bh);
+        ctx.fillStyle = c.dataset.skin === 'gb' ? '#0f380f' : '#000'; ctx.font = `${bh-2}px "Press Start 2P"`; ctx.textBaseline='middle';
+        ctx.fillText(' 2023-24  OXOLO  SENIOR FRONTEND', x+2, y+bh/2+1); }
+      continue;
+    }
+    if (r === brokenRow+1 && i > cols-4) continue; // a few broken
+    ctx.fillStyle = p.rows[r % p.rows.length]; ctx.fillRect(x, y, bw, bh);
+    ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fillRect(x, y+bh-2, bw, 2);
+  }
+  // paddle + ball
+  const py = c.height - 8, pw = Math.max(28, bw*2.2), px = c.width*0.55;
+  ctx.fillStyle = p.paddle; ctx.fillRect(px, py, pw, 4);
+  ctx.fillStyle = p.ball; ctx.fillRect(px + pw/2 + 10, py - 14, 4, 4);
+}
+}
+</script>
+</body>
+</html>

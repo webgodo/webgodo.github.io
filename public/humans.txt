@@ -1,0 +1,11 @@
+/* TEAM */
+  Engineer: Mohsen Ghaemmaghami
+  Site: https://mohsengh.com
+  Contact: hi@mohsengh.com
+
+/* THANKS */
+  Taito, for Arkanoid (1986).
+
+/* SITE */
+  Stack: Vite, React, TypeScript, Canvas 2D, Sveltia CMS, GitHub Pages
+  Source: https://github.com/webgodo/webgodo.github.io

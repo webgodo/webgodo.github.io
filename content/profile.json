@@ -1,0 +1,201 @@
+{
+  "name": "Mohsen Ghaemmaghami",
+  "shortName": "Mohsen",
+  "title": "Senior Software Engineer",
+  "tagline": "12+ yrs · React · TypeScript · Node",
+  "pitch": "I build fast, clean, scalable web applications. 12+ years of frontend and full-stack work, from a 1-million-user ranking page in 2013 to module-federated React platforms today.",
+  "location": "Australia · Remote",
+  "openTo": "Open to senior frontend / full-stack roles, remote or AU",
+  "email": "hi@mohsengh.com",
+  "links": {
+    "github": "https://github.com/webgodo",
+    "linkedin": "https://www.linkedin.com/in/webgodo/",
+    "cv": "/mohsen_ghaemmaghami-cv.pdf"
+  },
+  "timeline": [
+    {
+      "id": "lambda-curry",
+      "from": "2025-05", "to": null,
+      "role": "Senior Software Engineer", "company": "Lambda Curry", "type": "Full-time · Remote",
+      "tech": ["Medusa", "Node.js", "Redis", "TypeScript"],
+      "highlights": [
+        "Building commerce platforms on Medusa with Node.js, Redis and TypeScript."
+      ]
+    },
+    {
+      "id": "bettermode",
+      "from": "2024-11", "to": "2025-04",
+      "role": "Senior Software Engineer", "company": "Bettermode", "type": "Contract · Remote",
+      "tech": ["Node.js", "TypeScript", "WebSocket", "Software design"],
+      "highlights": [
+        "Designed and shipped real-time features over WebSocket for a community platform, in Node.js and TypeScript."
+      ]
+    },
+    {
+      "id": "oxolo",
+      "from": "2023-07", "to": "2024-09",
+      "role": "Senior Frontend Developer", "company": "Oxolo", "type": "Full-time · Germany · Remote",
+      "tech": ["React", "React Query", "Tailwind", "Storybook", "Module federation", "pnpm + nx", "Playwright", "gRPC"],
+      "highlights": [
+        "Restructured the frontend with module federation and a pnpm + nx monorepo, with a unified type-safe contract between DB, backend and frontend: 35% less deployment complexity, 30% more developer efficiency, 90% fewer manual errors.",
+        "Rewrote the main Editor app with React Query, Tailwind and an in-house Storybook design system: 40% smaller bundle, better error handling.",
+        "Raised test coverage 25% with Playwright, and pushed the marketing site's Core Web Vitals above 90 across the board.",
+        "Mentored new joiners (two became tech leads) and took part in hiring.",
+        "Prototyped a gRPC/ConnectRPC contract between backend and frontend."
+      ]
+    },
+    {
+      "id": "web3-bridge",
+      "from": "2022-10", "to": "2023-06",
+      "role": "Senior Frontend Developer (Web3)", "company": "Web3 Bridge", "type": "Contract · Hybrid",
+      "tech": ["ether.js", "Compound SDK", "Next.js", "Tailwind", "HeadlessUI", "Jest", "RTL", "Storybook"],
+      "highlights": [
+        "Built a DeFi browser extension on ether.js and the Compound Finance SDK.",
+        "Introduced TDD with Jest, React Testing Library and Storybook: 90% fewer bugs, faster releases.",
+        "Rewrote the legacy product in Next.js, Tailwind and HeadlessUI: 25% faster loads."
+      ]
+    },
+    {
+      "id": "mootanroo",
+      "from": "2018-07", "to": "2022-09",
+      "role": "Software Development Team Lead", "company": "Mootanroo", "type": "Full-time · Tehran",
+      "tech": ["React", "Redux", "SSR", "React Native", "Performance"],
+      "highlights": [
+        "Led a team of 20 engineers; the marketplace product doubled sales by rethinking the user journeys.",
+        "Doubled team velocity with a synchronized dev environment, 80%+ aligned with production.",
+        "Architected the React + Redux + SSR frontend: 30% faster loads, TTFB ~130 ms, FCP 1.6 s, LCP 2 s.",
+        "Shipped the iOS and Android apps with React Native."
+      ]
+    },
+    {
+      "id": "magic-mirror",
+      "from": "2016-09", "to": "2017-12",
+      "role": "Software Developer", "company": "Magic Mirror Art & Cultural Institute", "type": "Contract · Remote",
+      "tech": ["WordPress", "PHP", "nginx", "SEO"],
+      "highlights": [
+        "Built an SEO-friendly site on WordPress with custom PHP landing pages.",
+        "Kept the blog at ~0 downtime on nginx."
+      ]
+    },
+    {
+      "id": "amoozesh",
+      "from": "2015-05", "to": "2016-07",
+      "role": "Co-Founder", "company": "Amoozesh.it", "type": "Startup · Tehran",
+      "tech": ["Teaching", "Marketing", "Web"],
+      "highlights": [
+        "Produced a web-development course that reached thousands of learners on DVD (it was 2015; YouTube wasn't the classroom yet).",
+        "Ran the site, landing pages and campaigns: +20% conversion, +40% engagement."
+      ]
+    },
+    {
+      "id": "farakav",
+      "from": "2013-11", "to": "2018-07",
+      "role": "Software Engineer", "company": "Farakav", "type": "Full-time · Tehran",
+      "tech": ["Vanilla JS", "Vue", "Vuex", "HLS.js", "WebSocket", "AngularJS", "ASP.NET MVC", "Grunt"],
+      "highlights": [
+        "Built and maintained Varzesh3.com's frontend, one of Iran's most visited sites.",
+        "Real-time live scores over WebSocket with long-polling fallback: under 1 second from pitch to screen.",
+        "Built Anten.ir's live video streaming platform with Vue, Vuex and HLS.js.",
+        "Engineered the AngularJS admin panel, streamlining editorial workflows by 30%."
+      ]
+    },
+    {
+      "id": "jamdigital",
+      "from": "2012-05", "to": "2014-04",
+      "role": "Web Developer → Website Manager", "company": "Jamdigital", "type": "Full-time · Tehran",
+      "tech": ["PHP", "jQuery", "MySQL"],
+      "highlights": [
+        "Started as a PHP developer; grew into head admin and development lead.",
+        "Built a game-player ranking platform for 1M+ users at 98% uptime, integrated with BMI.ir's customer club."
+      ]
+    }
+  ],
+  "education": [
+    { "degree": "MEng, Artificial Intelligence", "school": "Payame Noor University", "years": "2016 –" },
+    { "degree": "BSc, Computer Software Engineering", "school": "Shamsipour Technical College", "years": "2013 – 2015" },
+    { "degree": "BS, Computer Engineering", "school": "Esfahan Technical College (Mohajer)", "years": "2010 – 2012" }
+  ],
+  "projects": [
+    { "name": "Anten.ir", "years": "2017", "blurb": "Live sports video streaming for web and mobile. Vue, Webpack HMR, HLS.js, architected against a RESTful backend shared with the native apps.", "tech": ["Vue", "HLS.js", "Webpack"] },
+    { "name": "EtemadOnline.com", "years": "2017", "blurb": "News site. Led frontend and project management; technical SEO work lifted organic traffic 30%.", "tech": ["Vue", "SEO", "REST"] },
+    { "name": "TV3.ir", "years": "2016", "blurb": "Official site of Iran's TV3 channel. Designed and built the programme timeline feature.", "tech": ["jQuery", "SASS", "Grunt"] },
+    { "name": "Football Fantasy", "years": "2018", "blurb": "The first fantasy football game in Iran, refactored in Vue 2 with Vuex and Bootstrap 4.", "tech": ["Vue 2", "Vuex"] },
+    { "name": "Peekage MVP", "years": "2019", "blurb": "Frontend lead for the MVP of a seed-stage startup that went on to raise CAD 2M.", "tech": ["React"] },
+    { "name": "Palladium Mall", "years": "2016", "blurb": "Website and admin dashboard for the largest shopping centre in Iran.", "tech": ["Vue", "jQuery", "SASS"] },
+    { "name": "Varzesh3 Lenz", "years": "2015", "blurb": "A service that crawled Instagram for sports content.", "tech": ["Node", "Crawling"] },
+    { "name": "Amoozesh.it course", "years": "2015", "blurb": "A complete web UI design and development course: HTML, CSS, JS, jQuery, Bootstrap, WordPress, PHP, MySQL. Shipped on DVD.", "tech": ["Teaching"] }
+  ],
+  "skills": [
+    { "group": "HTML / CSS / Tailwind", "level": 92, "lines": [
+      "I can center a div. Vertically. On the first try. With Tailwind, in one class.",
+      "I know the difference between margin and padding, and more importantly, when the answer is gap.",
+      "I use <button> for buttons and <a> for links. It is remarkable how much accessibility that buys.",
+      "My Tailwind class strings are longer than some commit messages, and far more honest."
+    ], "serious": "HTML5, CSS3, SASS, Tailwind CSS, responsive and accessible UI since 2012." },
+    { "group": "JavaScript", "level": 95, "lines": [
+      "I know why 0.1 + 0.2 isn't 0.3, and I know when it's fine not to care.",
+      "I know what `this` refers to. The answer is \"it depends who called\", which is the whole lesson.",
+      "typeof null === \"object\" has been a bug since 1995. I've learned to work around older things than that.",
+      "I can explain the event loop on a whiteboard, and debug it with a flame chart.",
+      "I can write a regex. I also write a comment above it, for the person I'll be in six months."
+    ], "serious": "ES2024+, performance profiling, bundling, the platform APIs. 12+ years." },
+    { "group": "TypeScript", "level": 93, "lines": [
+      "`any` is a loan with interest. I take it out rarely and pay it back fast.",
+      "I know the difference between type and interface. I also follow whatever the codebase already does.",
+      "I've written types strict enough that the compiler caught a bug the tests missed. That's the point of them.",
+      "I can read a four-parameter generic without lying down afterwards."
+    ], "serious": "Strict TypeScript across frontend and Node, end-to-end typed contracts (gRPC/ConnectRPC)." },
+    { "group": "React", "level": 94, "lines": [
+      "I know the difference between useCallback and useMemo, and I know the best optimisation is usually neither.",
+      "I know why your list needs a key, and why the array index is not it.",
+      "I've never called a hook conditionally. The Rules of Hooks are the only rules I've never wanted to break.",
+      "Wild RE-RENDER appeared! MOHSEN used React.memo. It's super effective.",
+      "I've built a design system in Storybook that cut a bundle by 40%. Components with a story ship with fewer surprises."
+    ], "serious": "React since 2017: architecture, design systems, Storybook, performance, micro-frontends." },
+    { "group": "Next.js", "level": 88, "lines": [
+      "I know where 'use client' goes, and more importantly, where it shouldn't.",
+      "Hydration mismatches don't scare me. They're just the server and the client disagreeing about the time."
+    ], "serious": "Next.js app and pages routers, SSR/SSG, rewrites of legacy products." },
+    { "group": "State & data", "level": 90, "lines": [
+      "I moved server state out of Redux and into React Query, and half the reducers simply disappeared.",
+      "I've written enough Redux boilerplate to know exactly which parts were worth it.",
+      "GraphQL taught me to ask for exactly what I need. Still working on applying that elsewhere.",
+      "I got a frontend and a backend to agree on a gRPC contract. The type checker now attends every meeting."
+    ], "serious": "React Query, Redux, GraphQL, REST, gRPC/ConnectRPC." },
+    { "group": "Node.js & backend", "level": 85, "lines": [
+      "I shipped live football scores to millions in under a second. The fans still blamed me for the goals.",
+      "I know the two hard problems in computer science, and I run Redis for one of them.",
+      "I kept a site at ~0% downtime with nginx and a small number of well-chosen defaults."
+    ], "serious": "Node.js, WebSocket, Redis, Medusa, nginx, ASP.NET MVC and PHP in a past life." },
+    { "group": "Testing", "level": 90, "lines": [
+      "I write the test first. Then the code. Then I read the test again, because it's now documentation.",
+      "TDD cut bugs by 90% on one project. The remaining 10% taught me the most.",
+      "My Playwright tests aren't flaky. My network, occasionally, is."
+    ], "serious": "TDD/BDD with Jest, React Testing Library, Playwright, Cypress." },
+    { "group": "Tooling", "level": 91, "lines": [
+      "I migrated Webpack to Vite and got the team's coffee breaks back.",
+      "I've run a pnpm + nx monorepo for a team. node_modules is now a solved problem, not a landmark.",
+      "I split one app into five micro-frontends with module federation. They still deploy independently and still talk to each other."
+    ], "serious": "Vite, Webpack, pnpm, nx, module federation, CI pipelines, Sentry." },
+    { "group": "Git & process", "level": 93, "lines": [
+      "I can leave a detached HEAD without searching for it. Finding my way in was the accident.",
+      "I rebase interactively, and my history reads like a changelog instead of a diary.",
+      "My code review comments are prefixed nit: more often than blocker:. That ratio is deliberate.",
+      "Sentry knows about my mistakes before my users do. That is exactly the arrangement I want."
+    ], "serious": "Code review, trunk-based development, release management, observability." },
+    { "group": "Mobile & Web3", "level": 78, "lines": [
+      "Shipped iOS and Android from one React Native codebase, on the same release day.",
+      "I've built DeFi frontends on ether.js. I treat every transaction like it's irreversible, because it is."
+    ], "serious": "React Native, ether.js, Compound SDK, browser extensions." },
+    { "group": "Leadership", "level": 89, "lines": [
+      "Led a team of 20 and doubled sales. The hard part wasn't the code.",
+      "Two of my mentees became tech leads. I take 30% of the credit and 100% of the pride.",
+      "I know a \"quick sync\" is 25 minutes. I schedule it as 30."
+    ], "serious": "Tech lead of 20 engineers, mentoring, hiring, architecture ownership." },
+    { "group": "Languages", "level": 80, "lines": [
+      "Persian: native. RTL support comes built in.",
+      "English: fluent enough to argue about tabs versus spaces, and to know it doesn't matter.",
+      "German: basic. \"Ich bin Frontend-Entwickler.\" Enough for the office, not yet for the Finanzamt."
+    ], "serious": "Persian (native), English (fluent), German (basic)." }
+  ]
+}
