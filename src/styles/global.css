@@ -127,7 +127,10 @@ li { margin: .2em 0; }
   .crt::after { display: none; }
 }
 @media print {
-  body { background: #fff; color: #000; font-family: Georgia, serif; font-size: 12pt; }
+  :root { color-scheme: light; }
+  html, body { background: #fff; color: #000; font-family: Georgia, serif; font-size: 12pt; min-height: 0; }
+  .crt::after { display: none; }
+  .screen { overflow: visible; min-height: 0; }
   .marquee, .panel, .nav, .no-print { display: none !important; }
   .screen { border: 0; box-shadow: none; border-radius: 0; }
   .screen__inner { padding: 0; }
