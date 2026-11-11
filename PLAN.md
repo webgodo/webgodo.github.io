@@ -271,7 +271,7 @@ Build step: parse frontmatter → `articles.json` → pre-rendered `/articles/:s
 
 ## 9. Roadmap
 
-Status 12 Nov 2026: phases 1–5 are implemented in this repo (see README.md), plus the Pac-Man easter egg "Scope Creep" (`src/game/pacman.ts`, Konami code on desktop, 10 taps on the logo on touch) and the Playwright smoke test. Left: hand-cleaned avatar sprite, Lighthouse pass, launch GIF, and the Pages-source switch described below.
+Status 12 Nov 2026: everything in the roadmap is shipped and live: the arcade site, Pac-Man easter egg "Scope Creep" (`src/game/pacman.ts`), Playwright smoke tests in CI, Lighthouse 100/100/100/100, pixel avatar, launch GIF + MP4 in `design/launch/` (from `scripts/record-launch.mjs`), CV PDF regenerated from `/cv` by `scripts/export-cv.mjs`, Sveltia admin with the Cloudflare auth Worker, and the Pages source switched to GitHub Actions.
 
 ### Going live (two one-time steps outside the repo)
 1. **GitHub Pages source → GitHub Actions.** The repo currently deploys the `main` branch root (legacy mode). The new site is built by `.github/workflows/deploy.yml`, so in repo Settings → Pages set Source to "GitHub Actions" *before* pushing, or the raw source would be served for a minute.
