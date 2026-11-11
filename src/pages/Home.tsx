@@ -93,6 +93,7 @@ export default function Home() {
       </section>
 
       <aside className="hero box">
+          <img className="hero__avatar" src="/avatar.png" width="64" height="64" alt="" />
           <h1 className="hero__name" style={{ color: 'var(--fg)', textShadow: '0 0 8px var(--cyan)' }}>{profile.name}</h1>
           <p className="hero__title">{profile.title}</p>
           <p className="hero__tag">{profile.tagline} · {profile.location}</p>

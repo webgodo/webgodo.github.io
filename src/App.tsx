@@ -1,16 +1,19 @@
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import Timeline from './pages/Timeline';
-import Skills from './pages/Skills';
-import Projects from './pages/Projects';
-import Articles from './pages/Articles';
-import Article from './pages/Article';
-import CV from './pages/CV';
 import NotFound from './pages/NotFound';
+
+const Timeline = lazy(() => import('./pages/Timeline'));
+const Skills = lazy(() => import('./pages/Skills'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Articles = lazy(() => import('./pages/Articles'));
+const Article = lazy(() => import('./pages/Article'));
+const CV = lazy(() => import('./pages/CV'));
 
 export default function App() {
   return (
+    <Suspense fallback={<p className="blink" style={{ fontFamily: 'var(--f-head)', fontSize: 9 }}>LOADING…</p>}>
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
@@ -23,5 +26,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 }

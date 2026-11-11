@@ -16,7 +16,7 @@ export default function Layout() {
   return (
     <div className="cab">
       <header className="marquee">
-        <NavLink to="/" className="marquee__logo" aria-label="Home">★ MOHSEN<b>GH</b>.COM ★</NavLink>
+        <NavLink to="/" className="marquee__logo">★ MOHSEN<b>GH</b>.COM ★</NavLink>
         <nav className="nav" aria-label="Main">
           {nav.map(([to, label]) => <NavLink key={to} to={to} end={to === '/'}>{label}</NavLink>)}
           <button type="button" className="btn btn--ghost no-print" onClick={toggle} aria-pressed={!muted} title="Toggle sound">
